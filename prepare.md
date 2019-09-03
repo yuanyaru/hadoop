@@ -14,7 +14,7 @@ hostnamectl set-hostname hadoop-node3
 * 192.168.100.71 hadoop-node1
 * 192.168.100.72 hadoop-node2
 * 192.168.100.73 hadoop-node3 
-#### 然后执行 reboot 命令重启，确保修改后的主机名生效
+然后执行 reboot 命令重启，确保修改后的主机名生效
 
 ### 配置 ssh 免密登陆
 设置 hadoop-node1 的 root 账户可以无密码登录所有节点
@@ -40,26 +40,24 @@ systemctl disable firewalld  # 禁止开机启动
 ### 安装JDK
 ``` bash
 mkdir -p /usr/local/java
-tar -zxf jdk-8u65-linux-x64.tar.gz -C /usr/local/java/
+tar -zxf jdk-8u191-linux-x64.tar.gz -C /usr/local/java/
 ```
 配置环境变量
 ``` bash
 vi /etc/profile
 #在配置文件的最后添加如下配置
-#JAVA
-JAVA_HOME=/usr/local/java/jdk1.8.0_65   #自己解压后的jdk目录名称
-JRE_JOME=/usr/local/java/jdk1.8.0_65/jre
+# java
+JAVA_HOME=/usr/local/java/jdk1.8.0_191   #自己解压后的jdk目录名称
+JRE_JOME=/usr/local/java/jdk1.8.0_191/jre
 CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
 PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 export JAVA_HOME JRE_JOME CLASS_PATH PATH
 ```
 保存退出后，执行以下命令刷新环境变量
-
 ``` bash
 source /etc/profile
 ```
 进行测试是否成功
-
 ``` bash
 java -version
 ```
