@@ -14,6 +14,7 @@ hostnamectl set-hostname hadoop-node3
 * 192.168.100.71 hadoop-node1
 * 192.168.100.72 hadoop-node2
 * 192.168.100.73 hadoop-node3 
+
 然后执行 reboot 命令重启，确保修改后的主机名生效
 
 ### 配置 ssh 免密登陆
