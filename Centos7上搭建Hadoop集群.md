@@ -39,7 +39,7 @@ mkdir dfs/data
 ```
 
 #### 修改配置文件
-进入hadoop的配置文件目录下
+进入 hadoop 的配置文件目录下
 ``` bash
 cd /usr/local/hadoop/hadoop-3.1.2/etc/hadoop
 ```
@@ -64,7 +64,7 @@ export YARN_RESOURCEMANAGER_USER=root
 export YARN_NODEMANAGER_USER=root
 ```
 
-以下配置在各个文件的<configuration></configuration>中添加
+以下配置在各个文件的```<configuration> </configuration>```中添加
 #### core-site.xml
 ``` bash
 <configuration>
@@ -79,7 +79,7 @@ export YARN_NODEMANAGER_USER=root
 </configuration>
 ```
 
-#### hdfs-site.xml
+#### hdfs-site.xml
 ``` bash
 <property>
    <name>dfs.name.dir</name>
@@ -110,7 +110,7 @@ export YARN_NODEMANAGER_USER=root
 </property>
 ```
 
-#### yarn-site.xml
+#### yarn-site.xml
 在命令行下输入如下命令，并将返回的地址复制，在配置下面的 yarn-site.xml 时会用到。
 ``` bash
 hadoop classpath
@@ -130,7 +130,7 @@ hadoop classpath
 </property>
 ```
 
-#### mapred-site.xml
+#### mapred-site.xml
 ``` bash
  <property>
     <name>mapred.job.tracker</name>
@@ -147,7 +147,7 @@ hadoop classpath
 ```
 
 #### 同步
-使用 scp 命令将hadoop-node1下的目录复制到各个从节点的相应位置上
+使用 scp 命令将 hadoop-node1 下的目录复制到各个从节点的相应位置上
 ``` bash
 scp -r /usr/local/java hadoop-node2:/usr/local/java
 scp -r /usr/local/hadoop hadoop-node2:/usr/local/hadoop
@@ -186,20 +186,22 @@ start-all.sh
 3930 SecondaryNameNode
 ```
 在 hadoop-node2 下的节点
+``` bash
 [root@hadoop-node2 ~]# jps
 18352 Jps
 18178 NodeManager
 3547 DataNode
+```
 
 ### 在浏览器上访问 hdfs 的 web 界面
 在浏览器上输入http://192.168.100.71:8088(前者为主节点ip地址，后者为hdfs的web进程对应的端口号)
 
 ![image](https://github.com/yuanyaru/hadoop/blob/master/images/8088.jpg)
 
-在浏览器上输入http://192.168.100.71:50070
+在浏览器上访问 http://192.168.100.71:50070
 
 ![image](https://github.com/yuanyaru/hadoop/blob/master/images/50070.jpg)
 
-在浏览器上输入http://192.168.100.71:50090
+在浏览器上访问 http://192.168.100.71:50090
 
 ![image](https://github.com/yuanyaru/hadoop/blob/master/images/50090.jpg)
