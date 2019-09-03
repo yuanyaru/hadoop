@@ -1,11 +1,11 @@
 ### 参照 prepare.md 完成准备工作
 
-### 下载hadoop
+### 下载 hadoop
 在 hadoop-node1 主机上创建 hadoop 目录
 ``` bash
 mkdir -p /usr/local/hadoop
 ```
-上传到 hadoop-node1 主机上，并解压到/usr/local/hadoop目录下
+上传到 hadoop-node1 主机上，并解压到 /usr/local/hadoop 目录下
 ``` bash
 tar -zxf hadoop-3.1.2.tar.gz -C /usr/local/hadoop/
 ```
@@ -13,7 +13,7 @@ tar -zxf hadoop-3.1.2.tar.gz -C /usr/local/hadoop/
 ``` bash
 vi /etc/profile
 #在配置文件最后一行添加如下配置
-#HADOOP
+# hadoop
 export HADOOP_HOME=/usr/local/hadoop/hadoop-3.1.2
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ``` 
@@ -21,15 +21,15 @@ export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ``` bash
 source /etc/profile
 ```
-``` bash
 进行测试是否成功
+``` bash
 hadoop version
 ```
 
-### 配置Hadoop3.1.2
+### 配置 Hadoop3.1.2
 #### 创建目录
 ``` bash
-#在/usr/local/hadoop目录下创建目录
+# 在/usr/local/hadoop目录下创建目录
 cd /usr/local/hadoop/
 mkdir tmp     
 mkdir var  
@@ -41,7 +41,7 @@ mkdir dfs/data
 #### 修改配置文件
 进入hadoop的配置文件目录下
 ``` bash
-cd /usr/local/hadoop/hadoop-3.1.1/etc/hadoop
+cd /usr/local/hadoop/hadoop-3.1.2/etc/hadoop
 ```
 
 #### vi workers
@@ -111,7 +111,7 @@ export YARN_NODEMANAGER_USER=root
 ```
 
 #### yarn-site.xml
-在命令行下输入如下命令，并将返回的地址复制，在配置下面的yarn-site.xml时会用到。
+在命令行下输入如下命令，并将返回的地址复制，在配置下面的 yarn-site.xml 时会用到。
 ``` bash
 hadoop classpath
 ```
@@ -147,7 +147,7 @@ hadoop classpath
 ```
 
 #### 同步
-使用scp命令将node1下的目录复制到各个从节点的相应位置上
+使用 scp 命令将hadoop-node1下的目录复制到各个从节点的相应位置上
 ``` bash
 scp -r /usr/local/java hadoop-node2:/usr/local/java
 scp -r /usr/local/hadoop hadoop-node2:/usr/local/hadoop
@@ -168,7 +168,7 @@ source /etc/profile
 ``` bash
 hdfs namenode -format
 ```
-运行之后不报错，并在倒数第五六行有successfully即为格式化节点成功
+运行之后不报错，并在倒数第五六行有 successfully 即为格式化节点成功
 
 ![image](https://github.com/yuanyaru/hadoop/blob/master/images/start-hadoop.jpg)
 
@@ -191,9 +191,15 @@ start-all.sh
 18178 NodeManager
 3547 DataNode
 
-### 在浏览器上访问hdfs的web界面
+### 在浏览器上访问 hdfs 的 web 界面
 在浏览器上输入http://192.168.100.71:8088(前者为主节点ip地址，后者为hdfs的web进程对应的端口号)
 
 ![image](https://github.com/yuanyaru/hadoop/blob/master/images/8088.jpg)
+
+在浏览器上输入http://192.168.100.71:50070
+
 ![image](https://github.com/yuanyaru/hadoop/blob/master/images/50070.jpg)
+
+在浏览器上输入http://192.168.100.71:50090
+
 ![image](https://github.com/yuanyaru/hadoop/blob/master/images/50090.jpg)
