@@ -4,7 +4,7 @@
 
 在 hadoop-node1 主机上创建 hadoop 目录
 
-    <span class="hljs-keyword">mkdir</span> -p /usr/<span class="hljs-keyword">local</span>/hadoop
+    mkdir</span> -p /usr/<span class="hljs-keyword">local</span>/hadoop
     `</pre>
 
     上传到 hadoop-node1 主机上，并解压到 /usr/local/hadoop 目录下
