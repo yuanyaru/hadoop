@@ -160,7 +160,7 @@
 
 在 hadoop-node1 中运行下述命令，格式化节点
 
-    hdfs namenode -<span class="hljs-built_in">format
+    hdfs namenode -format
     
 运行之后不报错，并在倒数第五六行有 successfully 即为格式化节点成功
 
