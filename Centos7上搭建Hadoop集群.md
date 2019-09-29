@@ -51,7 +51,7 @@
     hadoop-node2
     hadoop-node3
 
-    #### hadoop-env.sh
+#### hadoop-env.sh
 
     在 #  JAVA_HOME=/usr/java/testing hdfs dfs -ls一行下面添加如下代码
     export JAVA_HOME=/usr/local/java/jdk1.8.0_191
@@ -66,134 +66,124 @@
 
 #### core-site.xml
 
-    <pre>`<span class="hljs-tag"><<span class="hljs-title">configuration</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">name</span>></span>fs.defaultFS<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">value</span>></span>hdfs://192.168.100.71:9000<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">name</span>></span>hadoop.tmp.dir<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">value</span>></span>/usr/local/hadoop/tmp<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">configuration</span>></span>
-    `</pre>
+    <configuration>
+    <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://192.168.100.71:9000</value>
+    </property>
+    <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/usr/local/hadoop/tmp</value>
+    </property>
+    </configuration>
 
-    #### hdfs-site.xml
+#### hdfs-site.xml
 
-    <pre>`<<span class="hljs-keyword">property</span>>
-       <<span class="hljs-property">name</span>>dfs.<span class="hljs-property">name</span>.dir</<span class="hljs-property">name</span>>
-       <value>/usr/<span class="hljs-keyword">local</span>/hadoop/dfs/<span class="hljs-property">name</span></value>
-       <description>Path <span class="hljs-function_start"><span class="hljs-keyword">on</span></span> <span class="hljs-keyword">the</span> <span class="hljs-keyword">local</span> filesystem <span class="hljs-keyword">where</span> theNameNode stores <span class="hljs-keyword">the</span> namespace <span class="hljs-keyword">and</span> transactions logs persistently.</description>
-    </<span class="hljs-keyword">property</span>>
-    <<span class="hljs-keyword">property</span>>
-       <<span class="hljs-property">name</span>>dfs.data.dir</<span class="hljs-property">name</span>>
-       <value>/usr/<span class="hljs-keyword">local</span>/hadoop/dfs/data</value>
-       <description>Comma separated <span class="hljs-type">list</span> <span class="hljs-keyword">of</span> paths <span class="hljs-function_start"><span class="hljs-keyword">on</span></span> <span class="hljs-keyword">the</span> localfilesystem <span class="hljs-keyword">of</span> a DataNode <span class="hljs-keyword">where</span> <span class="hljs-keyword">it</span> should store <span class="hljs-keyword">its</span> blocks.</description>
-    </<span class="hljs-keyword">property</span>>
-    <<span class="hljs-keyword">property</span>>
-    <<span class="hljs-property">name</span>>dfs.namenode.http-address</<span class="hljs-property">name</span>>
-    <value><span class="hljs-number">192.168</span><span class="hljs-number">.100</span><span class="hljs-number">.71</span>:<span class="hljs-number">50070</span></value>
-    </<span class="hljs-keyword">property</span>>
-    <<span class="hljs-keyword">property</span>>
-    <<span class="hljs-property">name</span>>dfs.namenode.secondary.http-address</<span class="hljs-property">name</span>>
-    <value><span class="hljs-number">192.168</span><span class="hljs-number">.100</span><span class="hljs-number">.71</span>:<span class="hljs-number">50090</span></value>
-    </<span class="hljs-keyword">property</span>>
-    <<span class="hljs-keyword">property</span>>
-       <<span class="hljs-property">name</span>>dfs.replication</<span class="hljs-property">name</span>>
-       <value><span class="hljs-number">2</span></value>
-    </<span class="hljs-keyword">property</span>> 
-    <<span class="hljs-keyword">property</span>>
-          <<span class="hljs-property">name</span>>dfs.permissions</<span class="hljs-property">name</span>>
-          <value><span class="hljs-constant">false</span></value>
-          <description>need <span class="hljs-keyword">not</span> permissions</description>
-    </<span class="hljs-keyword">property</span>>
-    `</pre>
-
-    #### yarn-site.xml
+    <property>
+       <name>dfs.name.dir</name>
+       <value>/usr/local/hadoop/dfs/name</value>
+       <description>Path on the local filesystem where theNameNode stores the namespace and transactions logs persistently.</description>
+    </property>
+    <property>
+       <name>dfs.data.dir</name>
+       <value>/usr/local/hadoop/dfs/data</value>
+       <description>Comma separated list of paths on the localfilesystem of a DataNode where it should store its blocks.</description>
+    </property>
+    <property>
+        <name>dfs.namenode.http-address</name>
+        <value>192.168.100.71:50070</value>
+    </property>
+    <property>
+        <name>dfs.namenode.secondary.http-address</name>
+        <value>192.168.100.71:50090</value>
+    </property>
+    <property>
+       <name>dfs.replication</name>
+       <value>2</value>
+    </property> 
+    <property>
+        <name>dfs.permissions</name>
+        <value><span class="hljs-constant">false</value>
+        <description>need not permissions</description>
+    </property>
+    
+#### yarn-site.xml
 
     在命令行下输入如下命令，并将返回的地址复制，在配置下面的 yarn-site.xml 时会用到。
+    hadoop classpath
 
-    <pre>`hadoop <span class="hljs-keyword">classpath</span>
-    `</pre>
-    <pre>`<span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">name</span>></span>yarn.resourcemanager.hostname<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">value</span>></span>hadoop-node1<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">name</span>></span>yarn.nodemanager.aux-services<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">value</span>></span>mapreduce_shuffle<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">name</span>></span>yarn.application.classpath<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">value</span>></span>输入刚才返回的Hadoop classpath路径<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    `</pre>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>hadoop-node1</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.application.classpath</name>
+        <value>输入刚才返回的Hadoop classpath路径</value>
+    </property>
+    
+#### mapred-site.xml
 
-    #### mapred-site.xml
-
-    <pre>` <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-        <span class="hljs-tag"><<span class="hljs-title">name</span>></span>mapred.job.tracker<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-        <span class="hljs-tag"><<span class="hljs-title">value</span>></span>hadoop-node1:49001<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-          <span class="hljs-tag"><<span class="hljs-title">name</span>></span>mapred.local.dir<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-           <span class="hljs-tag"><<span class="hljs-title">value</span>></span>/usr/local/hadoop/var<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
-           <span class="hljs-tag"><<span class="hljs-title">name</span>></span>mapreduce.framework.name<span class="hljs-tag"></<span class="hljs-title">name</span>></span>
-           <span class="hljs-tag"><<span class="hljs-title">value</span>></span>yarn<span class="hljs-tag"></<span class="hljs-title">value</span>></span>
-    <span class="hljs-tag"></<span class="hljs-title">property</span>></span>
-    `</pre>
-
-    #### 同步
+    <property>
+        <name>mapred.job.tracker</name>
+        <value>hadoop-node1:49001</value>
+    </property>
+    <property>
+        <name>mapred.local.dir</name>
+        <value>/usr/local/hadoop/var</value>
+    </property>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    
+#### 同步
 
     使用 scp 命令将 hadoop-node1 下的目录复制到各个从节点的相应位置上
 
-    <pre>`scp -r <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/java hadoop-node2:/</span>usr<span class="hljs-regexp">/local/</span>java
-    scp -r <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/hadoop hadoop-node2:/</span>usr<span class="hljs-regexp">/local/</span>hadoop
-    scp -r <span class="hljs-regexp">/etc/</span>profile hadoop-<span class="hljs-string">node2:</span><span class="hljs-regexp">/etc/</span>
+    scp -r /usr/local/java hadoop-node2:/usr/local/java
+    scp -r /usr/local/hadoop hadoop-node2:/usr/local/hadoop
+    scp -r /etc/profile hadoop-node2:/etc/
 
-    scp -r <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/java hadoop-node3:/</span>usr<span class="hljs-regexp">/local/</span>java
-    scp -r <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/hadoop vnode3:/</span>usr<span class="hljs-regexp">/local/</span>hadoop
-    scp -r <span class="hljs-regexp">/etc/</span>profile hadoop-<span class="hljs-string">node3:</span><span class="hljs-regexp">/etc/</span>
-    `</pre>
+    scp -r /usr/local/java hadoop-node3:/usr/local/java
+    scp -r /usr/local/hadoop hadoop-node3:/usr/local/hadoop
+    scp -r /etc/profile hadoop-node3:/etc/
+    
+#### 在从节点上分别运行下述命令刷新环境变量
 
-    #### 在从节点上分别运行下述命令刷新环境变量
+    source /etc/profile
+    
+#### 格式化节点
 
-    <pre>`<span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile
-    `</pre>
+在 hadoop-node1 中运行下述命令，格式化节点
 
-    #### 格式化节点
+    hdfs namenode -<span class="hljs-built_in">format
+    
+运行之后不报错，并在倒数第五六行有 successfully 即为格式化节点成功
 
-    在 hadoop-node1 中运行下述命令，格式化节点
+![image](https://github.com/yuanyaru/hadoop/blob/master/images/start-hadoop.jpg)
 
-    <pre>`hdfs namenode -<span class="hljs-built_in">format</span>
-    `</pre>
+运行以下命令，启动 hadoop 集群的服务
 
-    运行之后不报错，并在倒数第五六行有 successfully 即为格式化节点成功
+    start-all.sh
+    
+在 hadoop-node1 上输入 jps 可以看到 hadoop-node1 下的节点
 
-    ![image](https://github.com/yuanyaru/hadoop/blob/master/images/start-hadoop.jpg)
+    [root@hadoop-node1 hadoop]# jps
+    3667 NameNode
+    21157 Jps
+    12792 ResourceManager
+    3930 SecondaryNameNode
+    
+在 hadoop-node2 下的节点
 
-    运行以下命令，启动 hadoop 集群的服务
-
-    <pre>`<span class="hljs-operator"><span class="hljs-keyword">start</span>-<span class="hljs-keyword">all</span>.sh</span>
-    `</pre>
-
-    在 hadoop-node1 上输入 jps 可以看到 hadoop-node1 下的节点
-
-    <pre>`[root<span class="hljs-property">@hadoop</span>-node1 hadoop]<span class="hljs-comment"># jps</span>
-    <span class="hljs-number">3667</span> NameNode
-    <span class="hljs-number">21157</span> Jps
-    <span class="hljs-number">12792</span> ResourceManager
-    <span class="hljs-number">3930</span> SecondaryNameNode
-    `</pre>
-
-    在 hadoop-node2 下的节点
-
-    <pre>`[root<span class="hljs-property">@hadoop</span>-node2 ~]<span class="hljs-comment"># jps</span>
-    <span class="hljs-number">18352</span> Jps
-    <span class="hljs-number">18178</span> NodeManager
-    <span class="hljs-number">3547</span> DataNode
+    [root@hadoop-node2 ~]# jps
+    18352 Jps
+    18178 NodeManager
+    3547 DataNode
 
 ### 在浏览器上访问 hdfs 的 web 界面
 
