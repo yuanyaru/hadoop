@@ -4,76 +4,67 @@
 
 在 hadoop-node1 主机上创建 hadoop 目录
 
-    <span class="hljs-keyword">mkdir</span> -p /usr/<span class="hljs-keyword">local</span>/hadoop
-    `</pre>
+    mkdir -p /usr/local/hadoop
 
-    上传到 hadoop-node1 主机上，并解压到 /usr/local/hadoop 目录下
+上传到 hadoop-node1 主机上，并解压到 /usr/local/hadoop 目录下
 
-    <pre>`tar -zxf hadoop-<span class="hljs-number">3.1</span>.<span class="hljs-number">2</span><span class="hljs-class">.tar</span><span class="hljs-class">.gz</span> -C /usr/local/hadoop/
-    `</pre>
+    tar -zxf hadoop-3.1.2.tar.gz -C /usr/local/hadoop/
 
-    配置环境变量
+配置环境变量
 
-    <pre>`vi /etc/profile
-    <span class="hljs-comment">#在配置文件最后一行添加如下配置</span>
-    <span class="hljs-comment"># hadoop</span>
-    <span class="hljs-keyword">export</span> HADOOP_HOME=/usr/local/hadoop/hadoop-<span class="hljs-number">3.1</span>.<span class="hljs-number">2</span>
-    <span class="hljs-keyword">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HADOOP_HOME</span>/bin:<span class="hljs-variable">$HADOOP_HOME</span>/sbin
-    `</pre>
+    vi /etc/profile
+    # 在配置文件最后一行添加如下配置
+    # hadoop
+    HADOOP_HOME=/usr/local/hadoop/hadoop-3.1.2
+    export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
-    运行如下命令刷新环境变量
+运行如下命令刷新环境变量
 
-    <pre>`<span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile
-    `</pre>
+    source /etc/profile
 
-    进行测试是否成功
+进行测试是否成功
 
-    <pre>`hadoop <span class="hljs-property">version</span>
-    `</pre>
+    hadoop version
 
-    ### 配置 Hadoop3.1.2
+### 配置 Hadoop3.1.2
 
-    #### 创建目录
+#### 创建目录
 
-    <pre>`<span class="hljs-comment"># 在/usr/local/hadoop目录下创建目录</span>
-    cd /usr/<span class="hljs-keyword">local</span>/hadoop/
-    <span class="hljs-keyword">mkdir</span> tmp     
-    <span class="hljs-keyword">mkdir</span> var  
-    <span class="hljs-keyword">mkdir</span> dfs  
-    <span class="hljs-keyword">mkdir</span> dfs/name  
-    <span class="hljs-keyword">mkdir</span> dfs/data
-    `</pre>
+    # 在/usr/local/hadoop目录下创建目录
+    cd /usr/local/hadoop/
+    mkdir tmp     
+    mkdir var  
+    mkdir dfs  
+    mkdir dfs/name  
+    mkdir dfs/data
 
-    #### 修改配置文件
+#### 修改配置文件
 
-    进入 hadoop 的配置文件目录下
+进入 hadoop 的配置文件目录下
 
-    <pre>`cd <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/hadoop/</span>hadoop-<span class="hljs-number">3.1</span>.<span class="hljs-number">2</span><span class="hljs-regexp">/etc/</span>hadoop
-    `</pre>
+    cd /usr/local/hadoop/hadoop-3.1.2/etc/hadoop
 
-    #### vi workers
+#### vi workers
 
-    <pre>`删除localhost
+    删除localhost
     添加从节点主机名，例如我这里是：
-    hadoop-<span class="hljs-label">node2</span>
-    hadoop-<span class="hljs-label">node3</span>
-    `</pre>
+    hadoop-node2
+    hadoop-node3
 
     #### hadoop-env.sh
 
-    <pre>`在 #  JAVA_HOME=<span class="hljs-regexp">/usr/</span>java/testing hdfs dfs -ls一行下面添加如下代码
-    <span class="hljs-keyword">export</span> JAVA_HOME=<span class="hljs-regexp">/usr/</span>local/java/jdk1<span class="hljs-number">.8</span><span class="hljs-number">.0</span>_191
-    <span class="hljs-keyword">export</span> HADOOP_HOME=<span class="hljs-regexp">/usr/</span>local/hadoop/hadoop-<span class="hljs-number">3.1</span><span class="hljs-number">.2</span>
-    <span class="hljs-keyword">export</span> HDFS_NAMENODE_USER=root
-    <span class="hljs-keyword">export</span> HDFS_DATANODE_USER=root
-    <span class="hljs-keyword">export</span> HDFS_SECONDARYNAMENODE_USER=root
-    <span class="hljs-keyword">export</span> YARN_RESOURCEMANAGER_USER=root
-    <span class="hljs-keyword">export</span> YARN_NODEMANAGER_USER=root
-    `</pre>
+    在 #  JAVA_HOME=/usr/java/testing hdfs dfs -ls一行下面添加如下代码
+    export JAVA_HOME=/usr/local/java/jdk1.8.0_191
+    export HADOOP_HOME=/usr/local/hadoop/hadoop-3.1.2
+    export HDFS_NAMENODE_USER=root
+    export HDFS_DATANODE_USER=root
+    export HDFS_SECONDARYNAMENODE_USER=root
+    export YARN_RESOURCEMANAGER_USER=root
+    export YARN_NODEMANAGER_USER=root
 
-    以下配置在各个文件的`<configuration> </configuration>`中添加
+以下配置在各个文件的`<configuration> </configuration>`中添加
 
-    #### core-site.xml
+#### core-site.xml
 
     <pre>`<span class="hljs-tag"><<span class="hljs-title">configuration</span>></span>
     <span class="hljs-tag"><<span class="hljs-title">property</span>></span>
