@@ -103,7 +103,7 @@
     </property> 
     <property>
         <name>dfs.permissions</name>
-        <value><span class="hljs-constant">false</value>
+        <value><span class="hljs-constant">false</span></value>
         <description>need not permissions</description>
     </property>
     

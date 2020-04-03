@@ -27,7 +27,7 @@ ssh-copy-id root@hadoop-node3
 ```
 * 可用以下命令测试ssh免密登陆是否设置成功
 ``` bash
-ssh root@node2  #不需输入密码即为成功
+ssh root@hadoop-node2  #不需输入密码即为成功
 exit            #退出ssh
 ```
 
@@ -38,7 +38,7 @@ systemctl stop firewalld    # 临时关闭
 systemctl disable firewalld  # 禁止开机启动
 ```
 
-### 安装JDK
+### 安装JDK(hadoop-node1)
 ``` bash
 mkdir -p /usr/local/java
 tar -zxf jdk-8u191-linux-x64.tar.gz -C /usr/local/java/
